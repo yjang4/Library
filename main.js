@@ -9,15 +9,12 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-/*
+
 const container = document.getElementById("container");
-let card = document.createElement("div");
-card.className = "card";
-card.textContent = myBook.title;
-container.appendChild(card);*/
 
 const btnSubmit = document.getElementById("btn-submit");
 const inputTitle = document.getElementById("input-title");
+
 btnSubmit.addEventListener("click", function() {
   let myBook = new Book(inputTitle.value);
   addBookToLibrary(myBook);
@@ -27,7 +24,15 @@ btnSubmit.addEventListener("click", function() {
   let readBtn = document.createElement("button");
   readBtn.textContent = "mark read";
   let deleteBtn = document.createElement("button");
-  readBtn.textContent = "X";
+  deleteBtn.textContent = "X";
+  card.id = myLibrary.length;
+
+  deleteBtn.addEventListener("click", function() {
+    let tempCard = document.getElementById(deleteBtn.parentElement.id);
+    container.removeChild(tempCard);
+  });
+  
   card.appendChild(readBtn);
+  card.appendChild(deleteBtn);
   container.appendChild(card);
 });
